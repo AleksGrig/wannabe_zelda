@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://8dl3py76ji4m"]
 
-[ext_resource type="Script" uid="uid://ckkcjsh677sm0" path="res://scripts/character_body_3d.gd" id="1_jaeev"]
+[ext_resource type="Script" uid="uid://ckkcjsh677sm0" path="res://scripts/Player.gd" id="1_jaeev"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ewcy1"]
 sky_top_color = Color(0.100395, 0.462946, 0.752242, 1)
@@ -40,17 +40,17 @@ use_collision = true
 size = Vector3(10, 1, 10)
 material = SubResource("StandardMaterial3D_ewcy1")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="Player" type="CharacterBody3D" parent="."]
 script = ExtResource("1_jaeev")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_ewcy1")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CharacterBody3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 size = Vector3(1, 2, 1)
 material = SubResource("StandardMaterial3D_jaeev")
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+[node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.968374, 0.249501, 0, -0.249501, 0.968374, 0, 3.40538, 6.8003)
