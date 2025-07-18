@@ -3,4 +3,5 @@
 /android/
 
 .vscode/
-test.py
+test*.py
+draft*.py
