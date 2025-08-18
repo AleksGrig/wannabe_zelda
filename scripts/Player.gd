@@ -4,6 +4,7 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 @onready var camera: Node3D = $CameraRig/Camera3D
+@onready var animation_player: AnimationPlayer = $Mesh/AnimationPlayer
 
 
 func _physics_process(delta: float) -> void:
@@ -28,8 +29,19 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
-
 	turn_to(direction)
+	
+	var current_speed := velocity.length()
+	const RUN_SPEED := 3.5
+	const BLEND_SPEED := 0.2
+	
+	if current_speed > RUN_SPEED:
+		animation_player.play("freehand_run", BLEND_SPEED)
+	elif current_speed > 0:
+		animation_player.play("freehand_walk", BLEND_SPEED, lerp(0.5, 1.75, current_speed/RUN_SPEED))
+	else:
+		animation_player.play("freehand_idle")
+	
 
 func turn_to(direction: Vector3) -> void:
 	if direction.length() > 0:
